@@ -6,7 +6,7 @@
      name: 'Operator Control Unit'
  };
  
- 
+
 var DISABLED = 0;
 var MANUAL = 1;
 var AUTO = 2;
