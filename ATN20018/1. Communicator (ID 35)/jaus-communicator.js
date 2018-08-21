@@ -2542,7 +2542,7 @@ io.on('connection', (socket) => { // socket io connection
     ack.recipient = sentTo[0].name;
     ack.timestamp = moment().valueOf();
     var nack = setTimeout(() => { console.log('Timed out!') }, 1000);  // do something about this
-    socket.broadcast.to(destination).emit(nodeInfo.messageID, nodeInfo);
+    socket.broadcast.emit('44A8h', nodeInfo);
     acknowledge(ack);
     clearTimeout(nack);
   });

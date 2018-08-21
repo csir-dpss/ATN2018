@@ -1,4 +1,4 @@
-/*  File :local-pathSegDriver.js
+    /*  File :local-pathSegDriver.js
   ==========================================================================
 	Component ID = 48
 	Function : 
@@ -11,11 +11,14 @@
     Company : CSIR - DPSS - Landward Sciences
     Project : G-Bat Autonomous Navigation System
     Date  : 10-Jan-2017
+
+    Revised : Perseverance Mbewe 
+    Date :    2018 
     ==========================================================================*/
 
 const moment = require('moment');
 const io = require('socket.io-client');
-const socket = io.connect('http://worldModel.local:3000', { reconnect: true }); // replaced the ip address 
+const socket = io.connect('http://localhost:3000', { reconnect: true }); // replaced the ip address 
 const spawn = require('child_process').spawn;
 const pathPlanning = './path.exe';
 var Planner = spawn(pathPlanning);
@@ -107,8 +110,9 @@ socket.on('connect', () => { // begining of the connection estalished block of c
     //==================================================================================================================
     // Receive map data from Vector knowledge store : Message ID = 4400h
     //---------------------------------------------------------------------
-    // respond with message ID : 4400h => Acknowledgemt to the Data received
-    socket.on('4A23h', (nodeInfo) => { // Receiving the map block of code
+    // respond with message ID : 44A8h => Acknowledgemt to the Data received from Commnunicator/ World Model
+    socket.on('44A8h', (nodeInfo) => { // Receiving the map block of code
+        console.log('getting the data from wm', nodeInfo);
         mapData = nodeInfo.data[0];
         console.log('\n\n => Received  Map data => ', JSON.stringify(mapData, null, 4));
         // retrieve the payload and process it
@@ -171,7 +175,7 @@ socket.on('connect', () => { // begining of the connection estalished block of c
                 executeList = myData;
 
                 // Test with Dummy Execute list Data -> Comment out
-                executeList = dummyExecuteList;
+               //  executeList = dummyExecuteList;
                 console.log('\n\n\nTesting with Dummy data ...\n\n\n =>   ' + JSON.stringify(executeList, null, 4));
 
                 // 3 Send the ExecuteList to the Local Vector driver : Message ID = 041Eh 
@@ -297,7 +301,7 @@ socket.on('connect', () => { // begining of the connection estalished block of c
 
 //
 
-
+/* we don't need this part for now
 //-------------------------------------------------------------------------------------------
 //                          Tester code for Local path Segment
 //-------------------------------------------------------------------------------------------
@@ -351,3 +355,5 @@ setTimeout(() => {
 
 
 }, 3000);
+
+*/

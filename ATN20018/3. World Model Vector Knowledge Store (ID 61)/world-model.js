@@ -69,27 +69,30 @@ socket.on('connect', () => { // begining of the connection estalished block of c
 
         // get Map data from the subsystem commander and format 
         nodeInfo.messageID = '4A23h';
-        nodeInfo.recipient = 'Local Path Segment Driver';
+        nodeInfo.recipient = 'Path Planner';
         nodeInfo.sender = me;
         nodeInfo.timeStamp = Date.now();
         nodeInfo.sequenceNo = 1; // idealyy the sequence needs to be updated for each mission
-
+        nodeInfo.curret_position = {x:2,y:3}
         console.log('getting the map...',nodeInfo);
          // we need to continually updating the map  - first we need to get  location, then traversability and obstacles
         
         // case 1 
-        nodeInfo.curret_position = {x:2,y:3}
+       
+       // socket.emit(nodeInfo.messageID, nodeInfo, (ack) => {
+         //   console.log('-> sending to path planner');
+       // });
         // case  2  : update map using 0 and 1  -- can't continue wating for antonius
         // pass the data to the planner 
         
 
         // check the planner on the system Tree 
          // fusion needs to happen here  - this is the first segment sent to the driver
-        console.log('sentTo', sentTo);
+      //  console.log('sentTo', sentTo);
       //  console.log('About to send data to', sentTo[0].name)
-        socket.emit(nodeInfo.messageID, nodeInfo, (ack) => {
+        /*socket.emit('4A23h', nodeInfo, (ack) => {
             console.log('Sending data to local path segment driver',nodeInfo);
-        });
+        }); */
 
      /*  world_model_schema.find().exec(function (err, results) {
              // getting the data from the database  - need to fix this  - need to get the data from OCU object 
