@@ -30,43 +30,6 @@ var me = {
     name: 'Path Planner'
 };
 var systemTree = [me];
-
-var mapData = {};
-
-var ExecuteList = {};
-var dummyExecuteList = {
-    Data: [{
-            Distance: 5.82487,
-            Inverse_Radius: 0.51001,
-            Linear_Velocity: 5.200012
-        },
-        {
-            Distance: 8.2487,
-            Inverse_Radius: 0.081001,
-            Linear_Velocity: 6.200012
-        },
-        {
-            Distance: 6.82487,
-            Inverse_Radius: -0.51001,
-            Linear_Velocity: 3.48712
-        },
-        {
-            Distance: 11.82487,
-            Inverse_Radius: 0.0751001,
-            Linear_Velocity: 10.48712
-        },
-        {
-            Distance: 11.82487,
-            Inverse_Radius: 0.3751001,
-            Linear_Velocity: 1.48712
-        }
-    ],
-    name: "Path Planner",
-    timeStamp: 1511955828
-};
-
-var Map = { TimeStamp: 15488843, currentPosition: [1, 2], Destination: [58, -25], from: 'WorldModel' };
-
 console.log('\n\n***** Local Path Segment Driver is Running! *****\n')
 
 
@@ -104,6 +67,7 @@ socket.on('connect', () => { // begining of the connection estalished block of c
     socket.on('disconnect', () => {
         console.log('Connection to the G-Bat network has been terminated!');
     });
+    // 	string received_Data=R"({"from":"worldModel","location":{"x":4,"y":-2,"r":4.5},"to":"planner","speed":11.11,"destination":{"x":21,"y":-1,"r":2.5},"map":{"rows":12,"columns":24,"gridSize":83.2,"traversability":[[0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0],[0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0],[0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0],[0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0],[0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0],[0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0],[0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0],[0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0],[0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]},"_id":"587b406b4f23ca6998ea6520","__v":0})";	 	
 
     //==================================================================================================================
     //                                          2.Handling messages
@@ -136,7 +100,7 @@ socket.on('connect', () => { // begining of the connection estalished block of c
         //-------------------------------------------------
         Planner.stderr.on('data', function(data) {
 
-            //   console.log('Sending Data to the c++ code => OK\n\n');
+            console.log('Something went wrong Please check C++ code', data);
         });
         /* 
 
@@ -161,9 +125,9 @@ socket.on('connect', () => { // begining of the connection estalished block of c
 
         Planner.stdout.on('data', function(data) {
 
-
+            
             // 1.the data is in the hex format => convert it to string!
-            myData = data.toString();
+            var myData = data.toString();
             //myData = data;
 
             console.log('\n\nReceived Data from c++ ...\n\n\n =>   ' + myData);

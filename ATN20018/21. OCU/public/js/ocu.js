@@ -371,11 +371,7 @@ io.on('connection', function(client) {
             id: missionDataInfo[0]._id, // get missionId from mongoDB
             name: missionDataInfo[0].missionName,
             description: missionDataInfo[0].missionDescription,
-            destination: {
-                x: 8,
-                y: -12,
-                r: 2.5
-            },
+            destination: {"x":21,"y":-1,"r":2.5},
             speed:11.5,
            // get the map from the world model 
             map :  {

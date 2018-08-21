@@ -71,12 +71,15 @@ socket.on('connect', () => { // begining of the connection estalished block of c
         nodeInfo.messageID = '4A23h';
         nodeInfo.recipient = 'Path Planner';
         nodeInfo.sender = me;
-        nodeInfo.timeStamp = Date.now();
+        nodeInfoTimeStamp = Date.now();
         nodeInfo.sequenceNo = 1; // idealyy the sequence needs to be updated for each mission
-        nodeInfo.curret_position = {x:2,y:3}
+        nodeInfo.data[0].location = {"x":4,"y":-2,"r":4.5}
+        
         console.log('getting the map...',nodeInfo);
          // we need to continually updating the map  - first we need to get  location, then traversability and obstacles
-        
+        socket.emit(nodeInfo.messageID, nodeInfo, (ack) => {
+            console.log('sending Message to Path Planner');
+        });
         // case 1 
        
        // socket.emit(nodeInfo.messageID, nodeInfo, (ack) => {
@@ -116,9 +119,7 @@ socket.on('connect', () => { // begining of the connection estalished block of c
                 nodeInfo.data = results;
                 //console.log('\n\n => this is result', results);
                 console.log(`\null => sending Vector Knowledge Store 0ject to ${nodeInfo.recipient.name}...`);
-                socket.emit(nodeInfo.messageID, nodeInfo, (ack) => {
-                    console.log('-> OK');
-                });
+               
             }
 
 
