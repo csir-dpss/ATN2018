@@ -1,0 +1,15 @@
+{
+  "name": "velocity-state-sensor",
+  "version": "1.0.0",
+  "description": "G-BAT Velocity Stat Sensor in Node.js",
+  "main": "velocityState-sensor.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Martin K. Mwila",
+  "license": "ISC",
+  "dependencies": {
+    "moment": "^2.17.1",
+    "socket.io": "^1.7.2"
+  }
+}
