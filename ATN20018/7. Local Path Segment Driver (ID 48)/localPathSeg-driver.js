@@ -13,6 +13,7 @@
     Date  : 10-Jan-2017
 
     Revised : Perseverance Mbewe 
+    Company : CSIR, Meraka Institute 
     Date :    2018 
     ==========================================================================*/
 
@@ -129,9 +130,6 @@ socket.on('connect', () => { // begining of the connection estalished block of c
             // 1.the data is in the hex format => convert it to string!
             var myData = data.toString();
             //myData = data;
-
-            console.log('\n\nReceived Data from c++ ...\n\n\n =>   ' + myData);
-            //console.log('\n\n\n myData is of type ' + typeof (myData));
             if (typeof(myData !== 'undefined')) {
                 //3.  convert the JSON format to an object
                 myObject = JSON.parse(myData);
@@ -140,7 +138,7 @@ socket.on('connect', () => { // begining of the connection estalished block of c
 
                 // Test with Dummy Execute list Data -> Comment out
                //  executeList = dummyExecuteList;
-                console.log('\n\n\nTesting with Dummy data ...\n\n\n =>   ' + JSON.stringify(executeList, null, 4));
+                console.log(` Executing path segments ... ${JSON.stringify(executeList, null, 4)}`);
 
                 // 3 Send the ExecuteList to the Local Vector driver : Message ID = 041Eh 
                 //3.1 Initialise the message to be sent

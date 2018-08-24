@@ -73,7 +73,7 @@ socket.on('connect', () => { // begining of the connection estalished block of c
         nodeInfo.sender = me;
         nodeInfoTimeStamp = Date.now();
         nodeInfo.sequenceNo = 1; // idealyy the sequence needs to be updated for each mission
-        nodeInfo.data[0].location = {"x":4,"y":-2,"r":4.5}
+        nodeInfo.data[0].location = {"x":0,"y":0,"r":4.5}
         
         console.log('getting the map...',nodeInfo);
          // we need to continually updating the map  - first we need to get  location, then traversability and obstacles

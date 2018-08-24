@@ -487,7 +487,7 @@ int main(int argc, char** argv) {
     
 	const float GBAT_wheel_base=1.3; // vehicle wheel base in meters 
 	const float theta_max=0.6; // max possible steering angle ~34deg
-	const float speed_max=11; // speed limit to 40km/h
+	const float speed_max=5.5; // speed limit to 40km/h
 		
 	json local_path_plan;
 	
